@@ -1,20 +1,35 @@
-const { BaseAgent, SimpleController, quickChats, Manager } = require('rlbot-test');
-const { GameState, BallState, CarState, Physics, Vector3 } = require('rlbot-test').GameStateUtil
+import { 
+    BaseAgent, 
+    SimpleController, 
+    quickChats, 
+    Manager, 
+    GameState, 
+    BallState, 
+    CarState, 
+    Physics, 
+    Vector3,
+    FieldInfo,
+    Color,
+    GameTickPacket,
+    BallPrediction,
+    Rotator
+} from 'rlbot-test';
 
 class ATBA extends BaseAgent {
-    constructor(name, team, index, fieldInfo) {
+    constructor(name: string, team: number, index: number, fieldInfo: FieldInfo) {
         super(name, team, index, fieldInfo) //pushes these all to `this`.
     }
-    getOutput(gameTickPacket, ballPrediction) {
+    getOutput(gameTickPacket: GameTickPacket, ballPrediction: BallPrediction) {
         var controller = new SimpleController()
         /* ATBA example */
         if (!gameTickPacket.gameInfo.isRoundActive) {
 
             return controller;
         }
-        var ballLocation = gameTickPacket.ball.physics.location;
-        var carLocation = gameTickPacket.players[this.index].physics.location;
-        var carRotation = gameTickPacket.players[this.index].physics.rotation;
+
+        var ballLocation: Vector3 = gameTickPacket.ball.physics.location;
+        var carLocation: Vector3 = gameTickPacket.players[this.index].physics.location;
+        var carRotation: Rotator = gameTickPacket.players[this.index].physics.rotation;
         
         //for spikerush
         controller.useItem = true
@@ -36,11 +51,11 @@ class ATBA extends BaseAgent {
         
         //renders "Hello world"
         this.renderer.beginRendering()
-        this.renderer.drawString2D(20, 20, 3, 3, 'Hello world', new this.renderer.Color(255, 255, 0, 0))
+        this.renderer.drawString2D(20, 20, 3, 3, 'Hello world', new Color(255, 255, 0, 0))
         
         //renderes the ball prediction
         //the color for rendering
-        let black = new this.renderer.Color(255, 0, 0, 0)
+        let black = new Color(255, 0, 0, 0)
         for(let i = 0; i < ballPrediction.slices.length-1; i++) {
             let ball1 = ballPrediction.slices[i].physics.location
             let ball2 = ballPrediction.slices[i+1].physics.location

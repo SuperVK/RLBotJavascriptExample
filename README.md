@@ -1,17 +1,21 @@
 # RLBotJavaScriptExample
 An example bot implemented in JavaScript
 
+[Documentation](https://github.com/SuperVK/RLBotJS)
+
 If you are looking for the java example bot please go [here](https://github.com/RLBot/RLBotJavaExample)
 
 ## Installation guide
 
 If you've installed a few other npm packages already, chances are doing `npm install SuperVK/RLBotJS` works.
 
-1. Clone this repo
+0. Make sure you have git installed (even if you are downloading the zip instead of cloning)
 
-2. Go into the folder, and type `npm install`
+1. Clone this repo (or download the zip)
 
-3. Open cmd/powershell in the example folder, and run `node .`
+2. Open cmd/powershell in the example folder, and type `npm install`
+
+3. Then run `node .`
 
 4. Start RLBot with gui or via `RLBotJavascriptExample/rlbot/run.bat` 
 
@@ -24,12 +28,3 @@ If you've installed a few other npm packages already, chances are doing `npm ins
 
 3. Try installing again from step 2
 
-
-
-## Video Guide
-
-TODO: make video guide
-
-## Usage Instructions:
-
-TODO: make usage instructions
