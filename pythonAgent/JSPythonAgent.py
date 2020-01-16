@@ -9,6 +9,8 @@ from rlbot.agents.base_independent_agent import BaseIndependentAgent
 from rlbot.botmanager.helper_process_request import HelperProcessRequest
 from rlbot.utils.structures import game_interface
 
+# Change this variable if you want to run the bot yourself! Not recommended in tournaments.
+AUTORUN = True
 
 class BaseJavaScriptAgent(BaseIndependentAgent):
 
@@ -44,7 +46,9 @@ class BaseJavaScriptAgent(BaseIndependentAgent):
             self.retire()
 
     def get_helper_process_request(self):
-        return HelperProcessRequest(python_file_path=None, key=self.name + str(self.port), executable=self.auto_run_path)
+        if AUTORUN:
+            return HelperProcessRequest(python_file_path=None, key=self.name + str(self.port), executable=self.auto_run_path)
+        return None
 
     def retire(self):
         port = self.read_port_from_file()
